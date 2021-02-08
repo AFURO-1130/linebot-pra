@@ -151,9 +151,9 @@ const postbackFunc = async function (event) {
 
     // console.log(event.type) => "postback"
     let message;
-    let score = 0;
+    let point = 0;
     if (event.postback.data === "1") {
-        score++;
+        point++;
         message = [{ type: "text", text: "正解だよ" },
         message = {
   "type": "flex",
@@ -224,9 +224,15 @@ const postbackFunc = async function (event) {
         
         return message;
 
+    }else{
+        message = { type: "text", text: "もう一度考えてみよう！" };
+
+       
     };
+
+    
     if (event.postback.data === "3") {
-        
+        point++;
         message = [{ type: "text", text: "正解だよ" },
         message = {
   "type": "flex",
@@ -297,6 +303,10 @@ const postbackFunc = async function (event) {
         
         return message;
 
+    }
+    else{
+        message = { type: "text", text: "もう一度考えてみよう！" };
+
     };
     if(event.postback.data === 4 || 5){
         message = [{ type: "text", text: "結果発表！！！" },
@@ -342,7 +352,7 @@ const postbackFunc = async function (event) {
       "contents": [
         {
           "type": "text",
-          "text": "スコアは" + score　+"点です",
+          "text": "スコアは" + point　+"点です",
           "align": "center",
           "contents": []
         }
