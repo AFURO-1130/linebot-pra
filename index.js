@@ -62,8 +62,10 @@ exports.handler = (event, context, callback) => {
     }
 };
 
+
 const messageFunc = async function (event) {
     let message;
+    
     message = {
         "type": "flex",
         "altText": "問題だよ",
@@ -74,7 +76,7 @@ const messageFunc = async function (event) {
             "action": {
                 "type": "postback",
                 "label": "あああ",
-                "text": "ああ",
+                
                 "data": "あああ"
             },
             "header": {
@@ -110,7 +112,7 @@ const messageFunc = async function (event) {
                         "action": {
                             "type": "postback",
                             "label": "かねしろ",
-                            "text":"かねしろ",
+                            
                             "data": "0"
                         },
                         "gravity": "top"
@@ -120,7 +122,7 @@ const messageFunc = async function (event) {
                         "action": {
                             "type": "postback",
                             "label": "きんじょう",
-                            "text": "きんじょう",
+                            
                             "data": "1"
                         }
                     }
@@ -134,6 +136,7 @@ const messageFunc = async function (event) {
 
 
 const postbackFunc = async function (event) {
+    
     /*
    {
       event = {type:"postback",
@@ -148,8 +151,9 @@ const postbackFunc = async function (event) {
 
     // console.log(event.type) => "postback"
     let message;
+    let score = 0;
     if (event.postback.data === "1") {
-        
+        score++;
         message = [{ type: "text", text: "正解だよ" },
         message = {
   "type": "flex",
@@ -254,7 +258,7 @@ const postbackFunc = async function (event) {
     "contents": [
       {
         "type": "text",
-        "text": "小西？",
+        "text": "テニスラケット何本？",
         "align": "center",
         "contents": []
       }
@@ -268,7 +272,7 @@ const postbackFunc = async function (event) {
         "type": "button",
         "action": {
           "type": "postback",
-          "label": "ゆうか",
+          "label": "5",
           
           "data": "4"
         },
@@ -278,7 +282,7 @@ const postbackFunc = async function (event) {
         "type": "button",
         "action": {
           "type": "postback",
-          "label": "あいね",
+          "label": "7",
           
           "data": "5"
         }
@@ -295,6 +299,60 @@ const postbackFunc = async function (event) {
 
     };
     if(event.postback.data === 4 || 5){
+        message = [{ type: "text", text: "結果発表！！！" },
+        message = {
+  "type": "flex",
+  "altText": "結果発表",
+  "contents": {
+    "type": "bubble",
+    "direction": "ltr",
+    "action": {
+      "type": "postback",
+      "label": "あああ",
+      "text": "ああ",
+      "data": "あああ"
+    },
+    "header": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "Header",
+          "align": "center",
+          "contents": []
+        }
+      ]
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "結果発表",
+          "align": "center",
+          "contents": []
+        }
+      ]
+    },
+    "footer": {
+      "type": "box",
+      "layout": "horizontal",
+      "contents": [
+        {
+          "type": "text",
+          "text": "スコアは" + score　+"点です",
+          "align": "center",
+          "contents": []
+        }
+      ]
+    }
+  }
+}
+
+
+];
         
     };
     
