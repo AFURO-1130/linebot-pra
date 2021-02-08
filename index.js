@@ -62,7 +62,7 @@ exports.handler = (event, context, callback) => {
     }
 };
 
-
+let total_point = 0;
 const messageFunc = async function (event) {
     let message;
     
@@ -150,11 +150,9 @@ const messageFunc = async function (event) {
     // console.log(event.type) => "postback"
 
 const postbackFunc = async function (event) {
-    
-    
     let message;
-    let total_point = 0;
-    if (event.postback.data === "1") {
+    
+    if (event.postback.data === "1"){
         total_point++;
         message = [{ type: "text", text: "正解だよ" },
         message = {
@@ -228,10 +226,10 @@ const postbackFunc = async function (event) {
         return message;
 
     }
-    
-
-    
-    else if(event.postback.data === "3") {
+    else if(event.postback.data === "0"){
+        message = { type: "text", text: "もう一度考えてみよう！" };
+    }
+    else if(event.postback.data === "3"){
         total_point++;
         message = [{ type: "text", text: "正解だよ" },
         message = {
@@ -264,7 +262,7 @@ const postbackFunc = async function (event) {
     "contents": [
       {
         "type": "text",
-        "text": "今持ってるテニスラケット何本？",
+        "text": "今持ってるラケットの本数は？",
         "align": "center",
         "contents": []
       }
@@ -278,16 +276,19 @@ const postbackFunc = async function (event) {
         "type": "button",
         "action": {
           "type": "postback",
-          "label": "5本",
+          "label": "５本",
+          
           "data": "4"
         },
         "gravity": "top"
       },
       {
         "type": "button",
+
         "action": {
           "type": "postback",
-          "label": "7本",
+          "label": "７本",
+          
           "data": "5"
         }
       }
@@ -296,19 +297,16 @@ const postbackFunc = async function (event) {
 }
 }
 
-
 ];
-        
         return message;
 
     }
-    else if(event.postback.data === "5"){
-      message = {type:"text",text:"正解だよ"}
-      point_total++;
-      return message;
+    else if(event.postback.data === "2"){
+        message = { type: "text", text: "もう一度考えてみよう！" };
     }
     
-    else if(event.postback.data === "4"|| "5" ){
+    else if(event.postback.data === "4" || "5"){
+    
         message = [{ type: "text", text: "結果発表！！！" },
         message = {
   "type": "flex",
@@ -369,9 +367,7 @@ const postbackFunc = async function (event) {
 
        
         
-     
-
-   if(event.postback.data === "0" || "2" ){
+    if(event.postback.data === "0" || "2" ){
         message = { type: "text", text: "もう一度考えてみよう！" };
 
     }
