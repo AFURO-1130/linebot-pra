@@ -305,6 +305,7 @@ const postbackFunc = async function (event) {
     else if(event.postback.data === "5"){
       message = {type:"text",text:"正解だよ"}
       point_total++;
+      return message;
     }
     
     else if(event.postback.data === "4"|| "5" ){
