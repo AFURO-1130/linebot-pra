@@ -151,7 +151,6 @@ const messageFunc = async function (event) {
 
 const postbackFunc = async function (event) {
     let message;
-    
     if (event.postback.data === "1"){
         total_point++;
         message = [{ type: "text", text: "正解だよ" },
@@ -226,9 +225,7 @@ const postbackFunc = async function (event) {
         return message;
 
     }
-    else if(event.postback.data === "0"){
-        message = { type: "text", text: "もう一度考えてみよう！" };
-    }
+    
     else if(event.postback.data === "3"){
         total_point++;
         message = [{ type: "text", text: "正解だよ" },
@@ -301,13 +298,15 @@ const postbackFunc = async function (event) {
         return message;
 
     }
-    else if(event.postback.data === "2"){
-        message = { type: "text", text: "もう一度考えてみよう！" };
-    }
+    else if(event.postback.data === "0" || "2"){
+      message = { type: "text", text: "もう一度考えてみよう！" };
+      return message;
+  }
+    else if(event.postback.data === "4"){
     
-    else if(event.postback.data === "4" || "5"){
-    
-        message = [{ type: "text", text: "結果発表！！！" },
+        message = [{ 
+          type:"text",text:"不正解だよ"
+        },{ type: "text", text: "結果発表！！！" },
         message = {
   "type": "flex",
   "altText": "結果発表",
@@ -362,8 +361,69 @@ const postbackFunc = async function (event) {
 
 ];
         return message;
-    };
+    }
     
+    else if(event.postback.data === "5"){
+    
+      message = [{
+        type:"text",text:"正解だよ"
+      },{ type: "text", text: "結果発表！！！" },
+      message = {
+"type": "flex",
+"altText": "結果発表",
+"contents": {
+  "type": "bubble",
+  "direction": "ltr",
+  "action": {
+    "type": "postback",
+    "label": "あああ",
+    "text": "ああ",
+    "data": "あああ"
+  },
+  "header": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "Header",
+        "align": "center",
+        "contents": []
+      }
+    ]
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "結果発表",
+        "align": "center",
+        "contents": []
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "horizontal",
+    "contents": [
+      {
+        "type": "text",
+        "text": "スコアは" + total_point　+"点です",
+        "align": "center",
+        "contents": []
+      }
+    ]
+  }
+}
+}
+
+
+];
+      return message;
+  }
+  
 
        
         
