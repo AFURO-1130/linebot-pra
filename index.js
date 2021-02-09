@@ -298,7 +298,7 @@ const postbackFunc = async function (event) {
         return message;
 
     }
-    else if(event.postback.data === "0" || "2"){
+    else if(event.postback.data === "0" && "2"){
       message = { type: "text", text: "もう一度考えてみよう！" };
       return message;
   }
@@ -364,7 +364,7 @@ const postbackFunc = async function (event) {
     }
     
     else if(event.postback.data === "5"){
-    
+    point_total++;
       message = [{
         type:"text",text:"正解だよ"
       },{ type: "text", text: "結果発表！！！" },
@@ -410,7 +410,7 @@ const postbackFunc = async function (event) {
     "contents": [
       {
         "type": "text",
-        "text": "スコアは" + total_point　+"点です",
+        "text": "スコアは" +  total_point　+"点です",
         "align": "center",
         "contents": []
       }
