@@ -367,20 +367,7 @@ const postbackFunc = async function (event) {
 
        
         
-    if(event.postback.data === "0" || "2" ){
-        message = { type: "text", text: "もう一度考えてみよう！" };
-
-    }
-    return message;
-
-
-
-
-
-
-
-
-
+   
 
 
 
