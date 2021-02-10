@@ -76,7 +76,6 @@ const messageFunc = async function (event) {
             "action": {
                 "type": "postback",
                 "label": "あああ",
-                
                 "data": "あああ"
             },
             "header": {

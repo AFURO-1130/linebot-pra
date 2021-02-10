@@ -62,6 +62,9 @@ exports.handler = (event, context, callback) => {
 };
 
 const quiz = [{
+    type: "text", text: "正解だよ"
+},
+{
     "type": "flex",
     "altText": "問題だよ",
     "contents":
@@ -128,13 +131,21 @@ const quiz = [{
 ,{}]
 
 
-
+let message;
 let total_point = 0;
 const messageFunc = async function (event) {
-    let message;
     
-    message = quiz[0]
+    message = [{quiz0message = quiz[0]}]
+    
+    
+    
+     return message;
     };
 
-    return message;
-
+   
+    
+const postbackFunc = async function (event) {
+  let message = "";
+  message = { type: "text", text: "ポストバックイベント" };
+  return message;
+};
