@@ -60,8 +60,9 @@ exports.handler = (event, context, callback) => {
         console.log("署名認証エラー");
     }
 };
-
-const quiz = [{
+//問題のflexメッセーを入れるところ
+const quiz = [
+{
     "type": "flex",
     "altText": "問題だよ",
     "contents":
@@ -125,16 +126,226 @@ const quiz = [{
         }
     }
 }
-,{}]
-
-
-
-let total_point = 0;
-const messageFunc = async function (event) {
-    let message;
+,{
+  "type": "flex",
+  "altText": "問題だよーん",
+  "contents": {
+  "type": "bubble",
+  "direction": "ltr",
+  "action": {
+    "type": "postback",
+    "label": "あああ",
     
-    message = quiz[0]
-    };
+    "data": "あああ"
+  },
+  "header": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "Header",
+        "align": "center",
+        "contents": []
+      }
+    ]
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "最近ハマってるものは？",
+        "align": "center",
+        "contents": []
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "horizontal",
+    "contents": [
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "料理",
+          
+          "data": "2"
+        },
+        "gravity": "top"
+      },
+      {
+        "type": "button",
 
+        "action": {
+          "type": "postback",
+          "label": "開発",
+          
+          "data": "3"
+        }
+      }
+    ]
+  }
+}
+},{
+  "type": "flex",
+  "altText": "問題だよーん",
+  "contents": {
+  "type": "bubble",
+  "direction": "ltr",
+  "action": {
+    "type": "postback",
+    "label": "あああ",
+    
+    "data": "あああ"
+  },
+  "header": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "Header",
+        "align": "center",
+        "contents": []
+      }
+    ]
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "今持ってるラケットの本数は？",
+        "align": "center",
+        "contents": []
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "horizontal",
+    "contents": [
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "５本",
+          
+          "data": "4"
+        },
+        "gravity": "top"
+      },
+      {
+        "type": "button",
+
+        "action": {
+          "type": "postback",
+          "label": "７本",
+          
+          "data": "5"
+        }
+      }
+    ]
+  }
+}
+},{}];
+
+const judge =[{
+    type:"text",text:"正解だよ",
+    
+},
+{
+    type:"text",text:"もう一度考えよう！"
+}];
+
+
+let message;
+let total_point = 0;
+//テキストを送られたら返すメッセージ
+const messageFunc = async function (event) {
+    message = quiz[0];
     return message;
+    };
+    //続きの問題
+const postbackFunc = async function (event) {
+    if(event.postback.data === "1"){
+        point++;
+         message = [judge[0],quiz[1]];
+     return message;
+    }
+    else if(event.postback.data === "3"){
+        point++;
+        message = [judge[0],quiz[2]];
+        
+        return message;
+    }
+    else if(event.postback.data === "5"){
+        point++;
+        message = judge[0];
+        return message;
+    }
+    else{
+        point--;
+        message = judge[1];
+        return message;
+    }
+    
+        
 
+    };
+  
+    const result = {
+        "type": "flex",
+        "altText": "結果発表",
+        "contents": {
+          "type": "bubble",
+          "direction": "ltr",
+          "action": {
+            "type": "postback",
+            "label": "あああ",
+            "text": "ああ",
+            "data": "あああ"
+          },
+          "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Header",
+                "align": "center",
+                "contents": []
+              }
+            ]
+          },
+          "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "結果発表",
+                "align": "center",
+                "contents": []
+              }
+            ]
+          },
+          "footer": {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "スコアは" + point　+"点です",
+                "align": "center",
+                "contents": []
+              }
+            ]
+          }
+        }
+      };
+      
