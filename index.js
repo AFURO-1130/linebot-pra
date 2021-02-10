@@ -135,7 +135,6 @@ const quiz = [
   "action": {
     "type": "postback",
     "label": "あああ",
-    
     "data": "あああ"
   },
   "header": {
@@ -171,7 +170,6 @@ const quiz = [
         "action": {
           "type": "postback",
           "label": "料理",
-          
           "data": "2"
         },
         "gravity": "top"
@@ -182,7 +180,6 @@ const quiz = [
         "action": {
           "type": "postback",
           "label": "開発",
-          
           "data": "3"
         }
       }
@@ -252,11 +249,10 @@ const quiz = [
     ]
   }
 }
-},{}];
+}];
 
 const judge =[{
     type:"text",text:"正解だよ",
-    
 },
 {
     type:"text",text:"もう一度考えよう！"
@@ -264,89 +260,82 @@ const judge =[{
 
 
 let message;
-let total_point = 0;
-
+let point = 0;
 //テキストを送られたら返すメッセージ
-const messageFunc = async function (event) {
+const messageFunc = async function (event){
+  
+  
     message = quiz[0];
     return message;
     };
     //続きの問題
     
 const postbackFunc = async function (event) {
+  
     if(event.postback.data === "1"){
-        total_point++
-         message = [judge[0],quiz[1]];
+      point++;
+        message = [judge[0],result];
+             
      return message;
     }
-    else if(event.postback.data === "3"){
-        total_point++;
-        message = [judge[0],quiz[2]];
-        return message;
-    }
-    else if(event.postback.data === "5"){
-        total_point++;
-        message = [judge[0],result];
-        return message;
-    }
-    else{
-        total_point--;
-        message = judge[1];
-        return message;
-    }
-    
-        
-
-    };
-  
+    // else if(event.postback.data === "3"){
+    //     point++;
+    //     message = [judge[0],result];
+    //     return message;
+    // }
     const result = {
-        "type": "flex",
-        "altText": "結果発表",
-        "contents": {
-          "type": "bubble",
-          "direction": "ltr",
-          "action": {
-            "type": "postback",
-            "label": "あああ",
-            "text": "ああ",
-            "data": "あああ"
-          },
-          "header": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Header",
-                "align": "center",
-                "contents": []
-              }
-            ]
-          },
-          "body": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "結果発表",
-                "align": "center",
-                "contents": []
-              }
-            ]
-          },
-          "footer": {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-              {
-                "type": "text",
-                "text": "スコアは" + total_point +"点です",
-                "align": "center",
-                "contents": []
-              }
-            ]
-          }
+      "type": "flex",
+      "altText": "結果発表",
+      "contents": {
+        "type": "bubble",
+        "direction": "ltr",
+        "action": {
+          "type": "postback",
+          "label": "あああ",
+          "text": "ああ",
+          "data": "あああ"
+        },
+        "header": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "Header",
+              "align": "center",
+              "contents": []
+            }
+          ]
+        },
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "結果発表",
+              "align": "center",
+              "contents": []
+            }
+          ]
+        },
+        "footer": {
+          "type": "box",
+          "layout": "horizontal",
+          "contents": [
+            {
+              "type": "text",
+              "text": "スコアは" + point +"点です",
+              "align": "center",
+              "contents": []
+            }
+          ]
         }
-      };
-      
+      }
+    };
+    
+    
+    };
+    
+    
+  
