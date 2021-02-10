@@ -299,7 +299,7 @@ const postbackFunc = async function (event) {
 
     };
   
-    let result = {
+    const result = {
         "type": "flex",
         "altText": "結果発表",
         "contents": {
